@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Smart AI-Based Automated Question Paper Generator">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Smart Question Paper Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     APPLICATION ROOT
+========================================================= -->
+<div id="app">
+
+    <!-- =====================================================
+         LOGIN PAGE
+    ====================================================== -->
+    <section id="loginPage" class="auth-page">
+
+        <div class="auth-container">
+
+            <div class="auth-brand">
+                <div class="brand-logo">AI</div>
+
+                <h1>Smart Question Paper Generator</h1>
+
+                <p>
+                    AI-assisted question paper generation
+                    for teachers and academic administrators.
+                </p>
+            </div>
+
+            <div class="auth-card">
+
+                <div class="auth-header">
+                    <h2>Welcome Back</h2>
+                    <p>Login to continue to your workspace</p>
+                </div>
+
+                <div id="loginMessage" class="form-message"></div>
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="toggleLoginPassword">
+                                Show
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="role-selector">
+
+                        <p class="role-label">Login as</p>
+
+                        <div class="role-options">
+
+                            <label class="role-option active">
+                                <input
+                                    type="radio"
+                                    name="loginRole"
+                                    value="TEACHER"
+                                    checked
+                                >
+
+                                <span>
+                                    <strong>Teacher</strong>
+                                    <small>Teacher workspace</small>
+                                </span>
+                            </label>
+
+                            <label class="role-option">
+                                <input
+                                    type="radio"
+                                    name="loginRole"
+                                    value="ADMIN"
+                                >
+
+                                <span>
+                                    <strong>Admin</strong>
+                                    <small>Administration workspace</small>
+                                </span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-full"
+                        id="loginButton">
+                        Login
+                    </button>
+
+                </form>
+
+                <div class="auth-divider">
+                    <span>New teacher?</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-full"
+                    id="openSignup">
+                    Create Teacher Account
+                </button>
+
+                <p class="security-note">
+                    Admin access is controlled by the system administrator.
+                    Public admin registration is disabled.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TEACHER SIGN UP
+    ====================================================== -->
+    <section id="signupPage" class="auth-page hidden">
+
+        <div class="auth-container">
+
+            <div class="auth-brand">
+                <div class="brand-logo">AI</div>
+
+                <h1>Teacher Registration</h1>
+
+                <p>
+                    Create a teacher account for approval by an administrator.
+                </p>
+            </div>
+
+            <div class="auth-card signup-card">
+
+                <div class="auth-header">
+                    <h2>Create Teacher Account</h2>
+                    <p>Your account will remain pending until approved.</p>
+                </div>
+
+                <div id="signupMessage" class="form-message"></div>
+
+                <form id="signupForm">
+
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="signupName"
+                            placeholder="Enter full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+
+                        <input
+                            type="email"
+                            id="signupEmail"
+                            placeholder="Enter email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupEmployeeId">
+                            Faculty / Employee ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="signupEmployeeId"
+                            placeholder="Enter employee ID"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupDepartment">
+                            Department
+                        </label>
+
+                        <select id="signupDepartment" required>
+                            <option value="">Select department</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>EEE</option>
+                            <option>ME</option>
+                            <option>Civil</option>
+                            <option>IT</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+
+                        <input
+                            type="password"
+                            id="signupPassword"
+                            placeholder="Create password"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="signupConfirmPassword"
+                            placeholder="Confirm password"
+                            required
+                        >
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-full">
+                        Submit Registration
+                    </button>
+
+                </form>
+
+                <button
+                    type="button"
+                    class="text-button"
+                    id="backToLogin">
+                    ← Back to Login
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         APPLICATION
+    ====================================================== -->
+    <div id="application" class="hidden">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-logo small">AI</div>
+
+                <div>
+                    <strong>Smart QPG</strong>
+                    <span>Academic AI</span>
+                </div>
+
+            </div>
+
+            <div class="user-mini">
+
+                <div class="avatar" id="sidebarAvatar">
+                    T
+                </div>
+
+                <div>
+                    <strong id="sidebarUserName">
+                        Teacher
+                    </strong>
+
+                    <span id="sidebarUserRole">
+                        Teacher
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- TEACHER NAVIGATION -->
+            <nav id="teacherNavigation" class="navigation hidden">
+
+                <button class="nav-item active"
+                        data-page="teacher-dashboard">
+                    <span>▦</span>
+                    Dashboard
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-subjects">
+                    <span>▣</span>
+                    My Subjects
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-syllabus">
+                    <span>▤</span>
+                    Syllabus
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-questions">
+                    <span>?</span>
+                    Question Bank
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-pyqs">
+                    <span>◫</span>
+                    PYQs
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-weightage">
+                    <span>◒</span>
+                    Weightage Analysis
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-generate">
+                    <span>✦</span>
+                    Generate Question Paper
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-papers">
+                    <span>▧</span>
+                    My Papers
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-profile">
+                    <span>◎</span>
+                    Profile
+                </button>
+
+                <button class="nav-item"
+                        data-page="teacher-help">
+                    <span>?</span>
+                    Help
+                </button>
+
+            </nav>
+
+
+            <!-- ADMIN NAVIGATION -->
+            <nav id="adminNavigation" class="navigation hidden">
+
+                <button class="nav-item active"
+                        data-page="admin-dashboard">
+                    <span>▦</span>
+                    Dashboard
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-teachers">
+                    <span>♙</span>
+                    Teachers
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-subjects">
+                    <span>▣</span>
+                    Subjects
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-assignments">
+                    <span>⇄</span>
+                    Assignments
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-papers">
+                    <span>▧</span>
+                    Question Papers
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-activity">
+                    <span>◷</span>
+                    Activity
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-settings">
+                    <span>⚙</span>
+                    Settings
+                </button>
+
+                <button class="nav-item"
+                        data-page="admin-profile">
+                    <span>◎</span>
+                    Profile
+                </button>
+
+            </nav>
+
+            <button id="logoutButton" class="logout-button">
+                <span>↪</span>
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN AREA -->
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <button
+                    id="mobileMenu"
+                    class="mobile-menu">
+                    ☰
+                </button>
+
+                <div>
+                    <h2 id="pageTitle">
+                        Dashboard
+                    </h2>
+
+                    <p id="pageSubtitle">
+                        Welcome to your academic workspace.
+                    </p>
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="notification">
+                        🔔
+                        <span></span>
+                    </div>
+
+                    <div class="topbar-user"
+                         id="topbarUserName">
+                        Teacher
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+            <div id="pageContent" class="page-content">
+
+                <!-- =============================================
+                     TEACHER DASHBOARD
+                ============================================== -->
+                <section
+                    id="teacher-dashboard"
+                    class="page-section">
+
+                    <div class="welcome-section">
+
+                        <div>
+                            <span class="eyebrow">
+                                TEACHER WORKSPACE
+                            </span>
+
+                            <h1>
+                                Welcome,
+                                <span id="teacherWelcomeName">
+                                    Teacher
+                                </span>
+                            </h1>
+
+                            <p>
+                                Manage your subjects, syllabus,
+                                question bank, previous-year questions
+                                and generate question papers.
+                            </p>
+                        </div>
+
+                        <button
+                            class="btn btn-primary"
+                            data-go="teacher-generate">
+                            ✦ Generate Question Paper
+                        </button>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+                            <div class="stat-icon">▣</div>
+
+                            <div>
+                                <span>Assigned Subjects</span>
+                                <strong id="statSubjects">3</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">?</div>
+
+                            <div>
+                                <span>Question Bank</span>
+                                <strong id="statQuestions">148</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">◫</div>
+
+                            <div>
+                                <span>PYQs Available</span>
+                                <strong id="statPYQ">5</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">▧</div>
+
+                            <div>
+                                <span>Generated Papers</span>
+                                <strong id="statPapers">8</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon">✓</div>
+
+                            <div>
+                                <span>Syllabus Status</span>
+                                <strong>Ready</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="section-header">
+                        <div>
+                            <h2>Quick Actions</h2>
+                            <p>Start your common academic tasks.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="quick-grid">
+
+                        <button class="quick-card"
+                                data-go="teacher-syllabus">
+                            <span>📄</span>
+                            <strong>Upload Syllabus</strong>
+                            <small>
+                                Add or update syllabus documents.
+                            </small>
+                        </button>
+
+                        <button class="quick-card"
+                                data-go="teacher-questions">
+                            <span>❓</span>
+                            <strong>Upload Question Bank</strong>
+                            <small>
+                                Manage questions for your subjects.
+                            </small>
+                        </button>
+
+                        <button class="quick-card"
+                                data-go="teacher-pyqs">
+                            <span>◫</span>
+                            <strong>Upload PYQ</strong>
+                            <small>
+                                Add previous-year question papers.
+                            </small>
+                        </button>
+
+                        <button class="quick-card primary"
+                                data-go="teacher-generate">
+                            <span>✦</span>
+                            <strong>Generate Question Paper</strong>
+                            <small>
+                                Create a new paper using AI assistance.
+                            </small>
+                        </button>
+
+                    </div>
+
+
+                    <div class="dashboard-columns">
+
+                        <div class="content-card">
+
+                            <div class="card-header">
+                                <div>
+                                    <h3>My Subjects</h3>
+                                    <p>Assigned academic subjects.</p>
+                                </div>
+
+                                <button
+                                    class="link-button"
+                                    data-go="teacher-subjects">
+                                    View All
+                                </button>
+                            </div>
+
+                            <div class="subject-list">
+
+                                <div class="subject-row">
+                                    <div class="subject-code">CS301</div>
+
+                                    <div>
+                                        <strong>
+                                            Database Management Systems
+                                        </strong>
+                                        <span>Semester 5</span>
+                                    </div>
+
+                                    <span class="status ready">
+                                        Active
+                                    </span>
+                                </div>
+
+                                <div class="subject-row">
+                                    <div class="subject-code">CS401</div>
+
+                                    <div>
+                                        <strong>
+                                            Artificial Intelligence
+                                        </strong>
+                                        <span>Semester 7</span>
+                                    </div>
+
+                                    <span class="status ready">
+                                        Active
+                                    </span>
+                                </div>
+
+                                <div class="subject-row">
+                                    <div class="subject-code">CS402</div>
+
+                                    <div>
+                                        <strong>
+                                            Machine Learning
+                                        </strong>
+                                        <span>Semester 7</span>
+                                    </div>
+
+                                    <span class="status ready">
+                                        Active
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="content-card">
+
+                            <div class="card-header">
+                                <div>
+                                    <h3>Recent Activity</h3>
+                                    <p>Your latest actions.</p>
+                                </div>
+                            </div>
+
+                            <div class="activity-list">
+
+                                <div class="activity-item">
+                                    <span>✓</span>
+                                    <div>
+                                        <strong>
+                                            PYQ uploaded
+                                        </strong>
+                                        <small>
+                                            AI 2026 paper processed
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <span>✦</span>
+                                    <div>
+                                        <strong>
+                                            Paper generated
+                                        </strong>
+                                        <small>
+                                            DBMS Mid-Semester
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <span>↻</span>
+                                    <div>
+                                        <strong>
+                                            Weightage updated
+                                        </strong>
+                                        <small>
+                                            Historical analysis completed
+                                        </small>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     TEACHER SUBJECTS
+                ============================================== -->
+                <section
+                    id="teacher-subjects"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h1>My Subjects</h1>
+                            <p>
+                                Subjects assigned to your teacher account.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="subject-card-grid">
+
+                        <div class="large-subject-card">
+                            <span class="subject-code">CS301</span>
+                            <h3>Database Management Systems</h3>
+                            <p>Semester 5 • CSE</p>
+
+                            <div class="card-actions">
+                                <button
+                                    class="btn btn-secondary small"
+                                    data-go="teacher-syllabus">
+                                    Syllabus
+                                </button>
+
+                                <button
+                                    class="btn btn-primary small"
+                                    data-go="teacher-generate">
+                                    Generate
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="large-subject-card">
+                            <span class="subject-code">CS401</span>
+                            <h3>Artificial Intelligence</h3>
+                            <p>Semester 7 • CSE</p>
+
+                            <div class="card-actions">
+                                <button
+                                    class="btn btn-secondary small"
+                                    data-go="teacher-questions">
+                                    Questions
+                                </button>
+
+                                <button
+                                    class="btn btn-primary small"
+                                    data-go="teacher-generate">
+                                    Generate
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="large-subject-card">
+                            <span class="subject-code">CS402</span>
+                            <h3>Machine Learning</h3>
+                            <p>Semester 7 • CSE</p>
+
+                            <div class="card-actions">
+                                <button
+                                    class="btn btn-secondary small"
+                                    data-go="teacher-pyqs">
+                                    PYQs
+                                </button>
+
+                                <button
+                                    class="btn btn-primary small"
+                                    data-go="teacher-generate">
+                                    Generate
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     SYLLABUS
+                ============================================== -->
+                <section
+                    id="teacher-syllabus"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Syllabus</h1>
+                            <p>
+                                Upload and manage syllabus documents.
+                            </p>
+                        </div>
+
+                        <label class="btn btn-primary file-button">
+                            Upload Syllabus
+                            <input type="file"
+                                   id="syllabusFile"
+                                   accept=".pdf,.doc,.docx">
+                        </label>
+
+                    </div>
+
+                    <div class="content-card">
+
+                        <div class="upload-area">
+
+                            <div class="upload-icon">↑</div>
+
+                            <h3>Upload Syllabus</h3>
+
+                            <p>
+                                PDF, DOC or DOCX files are supported.
+                            </p>
+
+                            <label class="btn btn-secondary file-button">
+                                Browse File
+                                <input type="file"
+                                       accept=".pdf,.doc,.docx">
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Syllabus Structure</h3>
+                                <p>Academic taxonomy.</p>
+                            </div>
+                        </div>
+
+                        <div class="unit-list">
+
+                            <div class="unit-row">
+                                <strong>Unit 1</strong>
+                                <span>Introduction</span>
+                                <span class="status ready">Mapped</span>
+                            </div>
+
+                            <div class="unit-row">
+                                <strong>Unit 2</strong>
+                                <span>Core Concepts</span>
+                                <span class="status ready">Mapped</span>
+                            </div>
+
+                            <div class="unit-row">
+                                <strong>Unit 3</strong>
+                                <span>Advanced Topics</span>
+                                <span class="status processing">
+                                    Processing
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     QUESTION BANK
+                ============================================== -->
+                <section
+                    id="teacher-questions"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Question Bank</h1>
+                            <p>
+                                Manage questions belonging to your subjects.
+                            </p>
+                        </div>
+
+                        <label class="btn btn-primary file-button">
+                            Upload Question Bank
+                            <input type="file"
+                                   accept=".pdf,.csv,.xlsx,.doc,.docx">
+                        </label>
+
+                    </div>
+
+                    <div class="filter-bar">
+
+                        <input
+                            type="search"
+                            placeholder="Search question..."
+                            id="questionSearch">
+
+                        <select>
+                            <option>All Units</option>
+                            <option>Unit 1</option>
+                            <option>Unit 2</option>
+                            <option>Unit 3</option>
+                        </select>
+
+                        <select>
+                            <option>All Difficulty</option>
+                            <option>Easy</option>
+                            <option>Medium</option>
+                            <option>Hard</option>
+                        </select>
+
+                        <select>
+                            <option>All Types</option>
+                            <option>MCQ</option>
+                            <option>Short Answer</option>
+                            <option>Long Answer</option>
+                        </select>
+
+                    </div>
+
+                    <div class="content-card table-card">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Unit</th>
+                                    <th>Difficulty</th>
+                                    <th>Type</th>
+                                    <th>Usage</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        Explain database normalization.
+                                    </td>
+                                    <td>Unit 2</td>
+                                    <td>
+                                        <span class="badge medium">
+                                            Medium
+                                        </span>
+                                    </td>
+                                    <td>Long Answer</td>
+                                    <td>5 times</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        What is a primary key?
+                                    </td>
+                                    <td>Unit 1</td>
+                                    <td>
+                                        <span class="badge easy">
+                                            Easy
+                                        </span>
+                                    </td>
+                                    <td>Short Answer</td>
+                                    <td>3 times</td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Explain transaction management.
+                                    </td>
+                                    <td>Unit 4</td>
+                                    <td>
+                                        <span class="badge hard">
+                                            Hard
+                                        </span>
+                                    </td>
+                                    <td>Descriptive</td>
+                                    <td>2 times</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     PYQs
+                ============================================== -->
+                <section
+                    id="teacher-pyqs"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Previous Year Questions</h1>
+
+                            <p>
+                                Upload, process and review historical
+                                question papers.
+                            </p>
+                        </div>
+
+                        <label class="btn btn-primary file-button">
+                            + Upload PYQ
+                            <input
+                                type="file"
+                                id="pyqUpload"
+                                multiple
+                                accept=".pdf,.png,.jpg,.jpeg">
+                        </label>
+
+                    </div>
+
+
+                    <div class="info-banner">
+                        <strong>AI Processing Workflow</strong>
+
+                        <span>
+                            Upload →
+                            OCR/Text Extraction →
+                            Question Extraction →
+                            Cleaning →
+                            Topic Mapping →
+                            Historical Analysis →
+                            Weightage Analysis
+                        </span>
+                    </div>
+
+
+                    <div class="filter-bar">
+
+                        <input
+                            type="search"
+                            placeholder="Search PYQs..."
+                            id="pyqSearch">
+
+                        <select id="pyqYearFilter">
+                            <option value="">All Years</option>
+                            <option>2026</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                        </select>
+
+                        <select>
+                            <option>All Status</option>
+                            <option>Ready</option>
+                            <option>Processing</option>
+                            <option>Failed</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="content-card table-card">
+
+                        <table id="pyqTable">
+
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>File</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Questions</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>2026</td>
+                                    <td>AI_2026.pdf</td>
+                                    <td>Artificial Intelligence</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Ready
+                                        </span>
+                                    </td>
+                                    <td>42</td>
+                                    <td>
+                                        <button class="table-action">
+                                            View
+                                        </button>
+
+                                        <button class="table-action">
+                                            Replace
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2025</td>
+                                    <td>AI_2025.pdf</td>
+                                    <td>Artificial Intelligence</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Ready
+                                        </span>
+                                    </td>
+                                    <td>38</td>
+                                    <td>
+                                        <button class="table-action">
+                                            View
+                                        </button>
+
+                                        <button class="table-action">
+                                            Replace
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024</td>
+                                    <td>AI_2024.pdf</td>
+                                    <td>Artificial Intelligence</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Ready
+                                        </span>
+                                    </td>
+                                    <td>35</td>
+                                    <td>
+                                        <button class="table-action">
+                                            View
+                                        </button>
+
+                                        <button class="table-action">
+                                            Replace
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <div class="content-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Extracted Questions</h3>
+
+                                <p>
+                                    Review questions extracted from
+                                    previous-year papers.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="extracted-question">
+                            <span>Q1</span>
+
+                            <div>
+                                <strong>
+                                    Explain the concept of knowledge
+                                    representation in AI.
+                                </strong>
+
+                                <small>
+                                    Topic: Knowledge Representation
+                                    • Year: 2026
+                                </small>
+                            </div>
+
+                            <button class="table-action">
+                                Review
+                            </button>
+                        </div>
+
+                        <div class="extracted-question">
+                            <span>Q2</span>
+
+                            <div>
+                                <strong>
+                                    Explain different search strategies.
+                                </strong>
+
+                                <small>
+                                    Topic: Search Algorithms
+                                    • Year: 2025
+                                </small>
+                            </div>
+
+                            <button class="table-action">
+                                Review
+                            </button>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     WEIGHTAGE
+                ============================================== -->
+                <section
+                    id="teacher-weightage"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Weightage Analysis</h1>
+
+                            <p>
+                                Historical topic frequency and
+                                explainable weightage.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="stats-grid four">
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Historical Papers</span>
+                                <strong>5</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Topics Analyzed</span>
+                                <strong>32</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div>
+                                <span>High Weight Topics</span>
+                                <strong>8</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Unseen Topics</span>
+                                <strong>4</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="content-card table-card">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Topic</th>
+                                    <th>Frequency</th>
+                                    <th>Historical Marks</th>
+                                    <th>Last Appeared</th>
+                                    <th>Weight Score</th>
+                                    <th>Tier</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Normalization</td>
+                                    <td>7 / 10</td>
+                                    <td>35</td>
+                                    <td>2026</td>
+                                    <td>82.5</td>
+                                    <td>
+                                        <span class="badge high">
+                                            High
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Transactions</td>
+                                    <td>5 / 10</td>
+                                    <td>25</td>
+                                    <td>2025</td>
+                                    <td>65</td>
+                                    <td>
+                                        <span class="badge medium">
+                                            Medium
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Recovery</td>
+                                    <td>0 / 10</td>
+                                    <td>0</td>
+                                    <td>—</td>
+                                    <td>0</td>
+                                    <td>
+                                        <span class="badge unseen">
+                                            Unseen
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     GENERATE PAPER
+                ============================================== -->
+                <section
+                    id="teacher-generate"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Generate Question Paper</h1>
+
+                            <p>
+                                Configure and generate an AI-assisted
+                                examination paper.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="generatePaperForm">
+
+                        <div class="form-layout">
+
+                            <div class="content-card">
+
+                                <div class="card-header">
+                                    <div>
+                                        <h3>Basic Configuration</h3>
+                                        <p>
+                                            Define examination details.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+                                        <label>Paper Title</label>
+
+                                        <input
+                                            type="text"
+                                            id="paperTitle"
+                                            value="Mid-Semester Examination"
+                                            required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Subject</label>
+
+                                        <select
+                                            id="paperSubject"
+                                            required>
+
+                                            <option>
+                                                Database Management Systems
+                                            </option>
+
+                                            <option>
+                                                Artificial Intelligence
+                                            </option>
+
+                                            <option>
+                                                Machine Learning
+                                            </option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Exam Type</label>
+
+                                        <select id="examType">
+                                            <option>Mid-Semester</option>
+                                            <option>End-Semester</option>
+                                            <option>Internal Assessment</option>
+                                            <option>Model Examination</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Total Marks</label>
+
+                                        <input
+                                            type="number"
+                                            id="totalMarks"
+                                            value="50"
+                                            min="1"
+                                            required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Duration</label>
+
+                                        <select id="duration">
+                                            <option>1 Hour</option>
+                                            <option>2 Hours</option>
+                                            <option selected>
+                                                3 Hours
+                                            </option>
+                                            <option>4 Hours</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Number of Questions</label>
+
+                                        <input
+                                            type="number"
+                                            id="questionCount"
+                                            value="20"
+                                            min="1"
+                                            required>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="content-card">
+
+                                <div class="card-header">
+                                    <div>
+                                        <h3>Difficulty Distribution</h3>
+
+                                        <p>
+                                            The values should total 100%.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="distribution-grid">
+
+                                    <div class="distribution-item">
+                                        <label>Easy</label>
+
+                                        <input
+                                            type="number"
+                                            id="easyPercent"
+                                            value="30"
+                                            min="0"
+                                            max="100">
+
+                                        <span>%</span>
+                                    </div>
+
+                                    <div class="distribution-item">
+                                        <label>Medium</label>
+
+                                        <input
+                                            type="number"
+                                            id="mediumPercent"
+                                            value="50"
+                                            min="0"
+                                            max="100">
+
+                                        <span>%</span>
+                                    </div>
+
+                                    <div class="distribution-item">
+                                        <label>Hard</label>
+
+                                        <input
+                                            type="number"
+                                            id="hardPercent"
+                                            value="20"
+                                            min="0"
+                                            max="100">
+
+                                        <span>%</span>
+                                    </div>
+
+                                </div>
+
+                                <div id="distributionMessage"
+                                     class="distribution-total">
+                                    Total: 100%
+                                </div>
+
+                            </div>
+
+
+                            <div class="content-card">
+
+                                <div class="card-header">
+                                    <div>
+                                        <h3>Question Types</h3>
+                                        <p>
+                                            Select the types of questions.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-grid">
+
+                                    <label class="checkbox-card">
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        <span>
+                                            <strong>MCQ</strong>
+                                            <small>
+                                                Multiple Choice
+                                            </small>
+                                        </span>
+                                    </label>
+
+                                    <label class="checkbox-card">
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        <span>
+                                            <strong>Short Answer</strong>
+                                            <small>
+                                                2–3 mark questions
+                                            </small>
+                                        </span>
+                                    </label>
+
+                                    <label class="checkbox-card">
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        <span>
+                                            <strong>Long Answer</strong>
+                                            <small>
+                                                Descriptive questions
+                                            </small>
+                                        </span>
+                                    </label>
+
+                                    <label class="checkbox-card">
+                                        <input
+                                            type="checkbox">
+                                        <span>
+                                            <strong>Numerical</strong>
+                                            <small>
+                                                Problem-based questions
+                                            </small>
+                                        </span>
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="content-card">
+
+                                <div class="card-header">
+                                    <div>
+                                        <h3>AI & Historical Controls</h3>
+
+                                        <p>
+                                            Control how historical data
+                                            influences generation.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <label class="switch-row">
+
+                                    <span>
+                                        <strong>
+                                            PYQ Influence
+                                        </strong>
+
+                                        <small>
+                                            Use historical question
+                                            patterns during generation.
+                                        </small>
+                                    </span>
+
+                                    <input
+                                        type="checkbox"
+                                        id="pyqInfluence"
+                                        checked>
+
+                                </label>
+
+                                <label class="switch-row">
+
+                                    <span>
+                                        <strong>
+                                            Historical Weightage
+                                        </strong>
+
+                                        <small>
+                                            Consider topic frequency
+                                            and historical marks.
+                                        </small>
+                                    </span>
+
+                                    <input
+                                        type="checkbox"
+                                        id="historicalWeightage"
+                                        checked>
+
+                                </label>
+
+                                <label class="switch-row">
+
+                                    <span>
+                                        <strong>
+                                            Underrepresented Topic Boost
+                                        </strong>
+
+                                        <small>
+                                            Give controlled consideration
+                                            to low-frequency or unseen
+                                            syllabus topics.
+                                        </small>
+                                    </span>
+
+                                    <input
+                                        type="checkbox"
+                                        id="underrepresentedBoost"
+                                        checked>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="content-card">
+
+                                <div class="card-header">
+                                    <div>
+                                        <h3>Topic Coverage</h3>
+                                        <p>
+                                            Select the syllabus areas.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="topic-checkboxes">
+
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        Unit 1
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        Unit 2
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        Unit 3
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            checked>
+                                        Unit 4
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="checkbox">
+                                        Unit 5
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="generation-summary content-card">
+
+                            <div>
+                                <span>GENERATION SUMMARY</span>
+
+                                <h3 id="summaryTitle">
+                                    Mid-Semester Examination
+                                </h3>
+
+                                <p id="summaryDetails">
+                                    Database Management Systems
+                                    • 50 Marks
+                                    • 3 Hours
+                                </p>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-large">
+                                ✦ Generate Question Paper
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <div
+                        id="generationResult"
+                        class="content-card hidden">
+
+                        <div class="success-header">
+                            <div class="success-icon">✓</div>
+
+                            <div>
+                                <h3>
+                                    Question Paper Generated
+                                </h3>
+
+                                <p>
+                                    Your paper has been created successfully.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="paper-preview">
+
+                            <div class="paper-heading">
+                                <strong>
+                                    GOVERNMENT COLLEGE OF ENGINEERING
+                                </strong>
+
+                                <span id="previewExamType">
+                                    Mid-Semester Examination
+                                </span>
+
+                                <span id="previewSubject">
+                                    Database Management Systems
+                                </span>
+                            </div>
+
+                            <div class="paper-meta">
+                                <span id="previewDuration">
+                                    Duration: 3 Hours
+                                </span>
+
+                                <span id="previewMarks">
+                                    Maximum Marks: 50
+                                </span>
+                            </div>
+
+                            <hr>
+
+                            <h4>SECTION A</h4>
+
+                            <p>
+                                1. What is database normalization? [2]
+                            </p>
+
+                            <p>
+                                2. Define a primary key. [2]
+                            </p>
+
+                            <p>
+                                3. Explain ACID properties. [2]
+                            </p>
+
+                            <h4>SECTION B</h4>
+
+                            <p>
+                                4. Explain different normal forms with
+                                suitable examples. [5]
+                            </p>
+
+                            <p>
+                                5. Explain transaction management in DBMS. [5]
+                            </p>
+
+                        </div>
+
+                        <div class="card-actions right">
+
+                            <button
+                                type="button"
+                                id="reviewGeneratedPaper"
+                                class="btn btn-secondary">
+                                Review Questions
+                            </button>
+
+                            <button
+                                type="button"
+                                id="saveGeneratedPaper"
+                                class="btn btn-secondary">
+                                Save Paper
+                            </button>
+
+                            <button
+                                type="button"
+                                id="downloadGeneratedPaper"
+                                class="btn btn-primary">
+                                Download PDF
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     MY PAPERS
+                ============================================== -->
+                <section
+                    id="teacher-papers"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>My Papers</h1>
+
+                            <p>
+                                View and manage generated question papers.
+                            </p>
+                        </div>
+
+                        <button
+                            class="btn btn-primary"
+                            data-go="teacher-generate">
+                            + Generate Paper
+                        </button>
+
+                    </div>
+
+                    <div class="content-card table-card">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Paper</th>
+                                    <th>Subject</th>
+                                    <th>Marks</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>DBMS Mid-Semester</td>
+                                    <td>DBMS</td>
+                                    <td>50</td>
+                                    <td>05 Oct 2026</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Saved
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="table-action">
+                                            Open
+                                        </button>
+
+                                        <button class="table-action">
+                                            Download
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>AI Internal Examination</td>
+                                    <td>AI</td>
+                                    <td>50</td>
+                                    <td>03 Oct 2026</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Saved
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="table-action">
+                                            Open
+                                        </button>
+
+                                        <button class="table-action">
+                                            Download
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     TEACHER PROFILE
+                ============================================== -->
+                <section
+                    id="teacher-profile"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h1>My Profile</h1>
+                            <p>View your teacher information.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card profile-card">
+
+                        <div class="profile-avatar"
+                             id="profileAvatar">
+                            T
+                        </div>
+
+                        <div class="profile-details">
+
+                            <h2 id="profileName">
+                                Teacher
+                            </h2>
+
+                            <p id="profileEmail">
+                                teacher@example.com
+                            </p>
+
+                            <div class="profile-grid">
+
+                                <div>
+                                    <span>Role</span>
+                                    <strong>Teacher</strong>
+                                </div>
+
+                                <div>
+                                    <span>Department</span>
+                                    <strong id="profileDepartment">
+                                        CSE
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>Status</span>
+                                    <strong class="text-success">
+                                        Active
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     HELP
+                ============================================== -->
+                <section
+                    id="teacher-help"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Help</h1>
+
+                            <p>
+                                Learn how to use the question paper
+                                generation system.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="help-grid">
+
+                        <div class="content-card">
+                            <h3>How do I upload PYQs?</h3>
+
+                            <p>
+                                Open PYQs from the sidebar and upload
+                                PDF or scanned image files. The system
+                                processes the document and extracts
+                                questions for historical analysis.
+                            </p>
+                        </div>
+
+                        <div class="content-card">
+                            <h3>How is weightage calculated?</h3>
+
+                            <p>
+                                Historical frequency, marks and recency
+                                can be used to calculate topic weightage.
+                            </p>
+                        </div>
+
+                        <div class="content-card">
+                            <h3>How do I generate a paper?</h3>
+
+                            <p>
+                                Open Generate Question Paper, select
+                                your subject and configure the paper
+                                structure before generating.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN DASHBOARD
+                ============================================== -->
+                <section
+                    id="admin-dashboard"
+                    class="page-section hidden">
+
+                    <div class="welcome-section">
+
+                        <div>
+                            <span class="eyebrow">
+                                ADMINISTRATION
+                            </span>
+
+                            <h1>
+                                Welcome,
+                                <span id="adminWelcomeName">
+                                    Administrator
+                                </span>
+                            </h1>
+
+                            <p>
+                                Manage teachers, subjects,
+                                assignments and academic activity.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Total Teachers</span>
+                                <strong>24</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Active Teachers</span>
+                                <strong>21</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Total Subjects</span>
+                                <strong>36</strong>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div>
+                                <span>Assignments</span>
+                                <strong>58</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="quick-grid">
+
+                        <button
+                            class="quick-card"
+                            data-go="admin-teachers">
+
+                            <span>♙</span>
+
+                            <strong>Manage Teachers</strong>
+
+                            <small>
+                                Approve, activate or manage teachers.
+                            </small>
+
+                        </button>
+
+                        <button
+                            class="quick-card"
+                            data-go="admin-subjects">
+
+                            <span>▣</span>
+
+                            <strong>Manage Subjects</strong>
+
+                            <small>
+                                Add, edit and remove subjects.
+                            </small>
+
+                        </button>
+
+                        <button
+                            class="quick-card"
+                            data-go="admin-assignments">
+
+                            <span>⇄</span>
+
+                            <strong>Assign Subjects</strong>
+
+                            <small>
+                                Assign subjects to teachers.
+                            </small>
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN TEACHERS
+                ============================================== -->
+                <section
+                    id="admin-teachers"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Teachers</h1>
+
+                            <p>
+                                Approve and manage teacher accounts.
+                            </p>
+                        </div>
+
+                        <button class="btn btn-primary">
+                            + Add Teacher
+                        </button>
+
+                    </div>
+
+                    <div class="filter-bar">
+
+                        <input
+                            type="search"
+                            placeholder="Search teachers...">
+
+                        <select>
+                            <option>All Status</option>
+                            <option>Pending</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+
+                        <select>
+                            <option>All Departments</option>
+                            <option>CSE</option>
+                            <option>ECE</option>
+                            <option>EEE</option>
+                        </select>
+
+                    </div>
+
+                    <div class="content-card table-card">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Teacher</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Status</th>
+                                    <th>Subjects</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>Dr. Anita Sharma</td>
+                                    <td>anita@example.com</td>
+                                    <td>CSE</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td>4</td>
+                                    <td>
+                                        <button class="table-action">
+                                            View
+                                        </button>
+
+                                        <button class="table-action">
+                                            Assign
+                                        </button>
+
+                                        <button class="table-action danger">
+                                            Deactivate
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Rahul Kumar</td>
+                                    <td>rahul@example.com</td>
+                                    <td>CSE</td>
+                                    <td>
+                                        <span class="status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+                                    <td>0</td>
+                                    <td>
+                                        <button class="table-action">
+                                            Approve
+                                        </button>
+
+                                        <button class="table-action danger">
+                                            Remove
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN SUBJECTS
+                ============================================== -->
+                <section
+                    id="admin-subjects"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Subjects</h1>
+
+                            <p>
+                                Manage institution subjects.
+                            </p>
+                        </div>
+
+                        <button class="btn btn-primary">
+                            + Add Subject
+                        </button>
+
+                    </div>
+
+                    <div class="content-card table-card">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Subject</th>
+                                    <th>Department</th>
+                                    <th>Semester</th>
+                                    <th>Teachers</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>CS301</td>
+                                    <td>
+                                        Database Management Systems
+                                    </td>
+                                    <td>CSE</td>
+                                    <td>5</td>
+                                    <td>4</td>
+                                    <td>
+                                        <button class="table-action">
+                                            Edit
+                                        </button>
+
+                                        <button class="table-action">
+                                            Assign
+                                        </button>
+
+                                        <button class="table-action danger">
+                                            Remove
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>CS401</td>
+                                    <td>
+                                        Artificial Intelligence
+                                    </td>
+                                    <td>CSE</td>
+                                    <td>7</td>
+                                    <td>3</td>
+                                    <td>
+                                        <button class="table-action">
+                                            Edit
+                                        </button>
+
+                                        <button class="table-action">
+                                            Assign
+                                        </button>
+
+                                        <button class="table-action danger">
+                                            Remove
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN ASSIGNMENTS
+                ============================================== -->
+                <section
+                    id="admin-assignments"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Assignments</h1>
+
+                            <p>
+                                Assign subjects to teachers.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="content-card">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Teacher</label>
+
+                                <select>
+                                    <option>
+                                        Dr. Anita Sharma
+                                    </option>
+
+                                    <option>
+                                        Rahul Kumar
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Subject</label>
+
+                                <select>
+                                    <option>
+                                        Database Management Systems
+                                    </option>
+
+                                    <option>
+                                        Artificial Intelligence
+                                    </option>
+
+                                    <option>
+                                        Machine Learning
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Academic Session</label>
+
+                                <select>
+                                    <option>2026-27</option>
+                                    <option>2025-26</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-primary">
+                            Assign Subject
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN PAPERS
+                ============================================== -->
+                <section
+                    id="admin-papers"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Question Papers</h1>
+
+                            <p>
+                                View papers generated by teachers.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="content-card table-card">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Paper</th>
+                                    <th>Teacher</th>
+                                    <th>Subject</th>
+                                    <th>Marks</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>DBMS Mid-Semester</td>
+                                    <td>Dr. Anita Sharma</td>
+                                    <td>DBMS</td>
+                                    <td>50</td>
+                                    <td>05 Oct 2026</td>
+                                    <td>
+                                        <span class="status ready">
+                                            Saved
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN ACTIVITY
+                ============================================== -->
+                <section
+                    id="admin-activity"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+
+                        <div>
+                            <h1>Activity</h1>
+                            <p>Recent administrative activity.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="content-card">
+
+                        <div class="activity-list">
+
+                            <div class="activity-item">
+                                <span>✓</span>
+                                <div>
+                                    <strong>
+                                        Teacher approved
+                                    </strong>
+                                    <small>
+                                        Rahul Kumar was approved.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <span>+</span>
+                                <div>
+                                    <strong>
+                                        Subject created
+                                    </strong>
+                                    <small>
+                                        Machine Learning added.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="activity-item">
+                                <span>⇄</span>
+                                <div>
+                                    <strong>
+                                        Assignment created
+                                    </strong>
+                                    <small>
+                                        AI assigned to teacher.
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN SETTINGS
+                ============================================== -->
+                <section
+                    id="admin-settings"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h1>Settings</h1>
+                            <p>System administration settings.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card">
+
+                        <label class="switch-row">
+                            <span>
+                                <strong>
+                                    Teacher approval required
+                                </strong>
+
+                                <small>
+                                    New teacher accounts remain pending
+                                    until approved.
+                                </small>
+                            </span>
+
+                            <input type="checkbox" checked>
+                        </label>
+
+                        <label class="switch-row">
+                            <span>
+                                <strong>
+                                    Audit logging
+                                </strong>
+
+                                <small>
+                                    Record administrative activity.
+                                </small>
+                            </span>
+
+                            <input type="checkbox" checked>
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =============================================
+                     ADMIN PROFILE
+                ============================================== -->
+                <section
+                    id="admin-profile"
+                    class="page-section hidden">
+
+                    <div class="section-header">
+                        <div>
+                            <h1>Admin Profile</h1>
+                            <p>Administrator information.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card profile-card">
+
+                        <div class="profile-avatar">
+                            A
+                        </div>
+
+                        <div class="profile-details">
+
+                            <h2 id="adminProfileName">
+                                Administrator
+                            </h2>
+
+                            <p id="adminProfileEmail">
+                                admin@example.com
+                            </p>
+
+                            <div class="profile-grid">
+
+                                <div>
+                                    <span>Role</span>
+                                    <strong>Administrator</strong>
+                                </div>
+
+                                <div>
+                                    <span>Status</span>
+                                    <strong class="text-success">
+                                        Active
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+
+<script src="auth.js"></script>
+
+</body>
+</html>
